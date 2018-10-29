@@ -42,14 +42,14 @@ The code relies on the following hardware:
 Any similar hardware should work, but might need some code change.
 
 ## Software dependencies
-The [Arduino IDE](https://www.arduino.cc/en/Main/Software) with following libraries:
+The [Arduino IDE](https://www.arduino.cc/en/Main/Software) with following libraries (all available from the Arduino Library Manager):
 - [Arduino MKRWAN](https://github.com/arduino-libraries/MKRWAN) version 1.1.7 or newer
 - [Adafruit FRAM](https://github.com/adafruit/Adafruit_FRAM_SPI) (SPI version)
-- [CayenneLPP](https://github.com/TheThingsNetwork/arduino-device-lib) (Only import the CayenneLPP code)
+- [TheThingsNetwork](https://github.com/TheThingsNetwork/arduino-device-lib) Note that we only need the `CayenneLPP.cpp`/`CayenneLPP.h` files; only copy these or delete `TheThingsMessage.cpp`/`TheThingsNetwork.cpp` to avoid compilation errors.
 - For the BME280 sensor
-  - [Adafruit sensor](https://github.com/adafruit/Adafruit_Sensor)
+  - [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)
   - [Adafruit BME280](https://github.com/adafruit/Adafruit_BME280_Library)
 - For the Maxim DS18B20 sensors
   - [OneWire](https://github.com/PaulStoffregen/OneWire)
   - [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library)
-- Optional display: [U8g2](https://github.com/olikraus/u8g2)
+- For the optional display: [U8g2](https://github.com/olikraus/u8g2)
