@@ -33,7 +33,7 @@ void setupSleep() {
 void enterSleep() {
   // Raise the Done pin for the TPL5110
   D_PRINTLN("Entering sleep mode");
-  delay(1000);
+  D_FLUSH;
   digitalWrite(donePin, HIGH);
   // Following code never reached if TPL510 works properly ;)
   // Used when node is powered from USB
