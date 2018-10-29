@@ -30,7 +30,7 @@ const uint8_t batteryPin = ADC_BATTERY;           // Battery pin
 const uint8_t analogBits = 10;                    // ADC resolution
 const uint16_t analogMax = (1 << analogBits)-1;   // Max value for ADC
 const float divider = 3.018;                      // Voltage divider should be (680 + 330) / 330 == 3.061;
-                                                  // set to 3.018 after callibration
+                                                  // set to 3.018 after calibration
 const uint8_t overSampling = 8;                   // Read oversampling
 
 class Voltage: public Sensor

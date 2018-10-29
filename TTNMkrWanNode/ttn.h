@@ -27,7 +27,7 @@
 
 const uint8_t resetPin  = 1;        // Reset button
 
-// Data struture for session keys and frame counters
+// Data structure for session keys and frame counters
 const uint8_t devAddrSize = 8;
 const uint8_t sKeySize = 32;
 struct ttnData_t {

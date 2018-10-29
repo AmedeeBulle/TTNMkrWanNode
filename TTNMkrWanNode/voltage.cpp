@@ -24,7 +24,7 @@
 void Voltage::setup() {
   pinMode(batteryPin, INPUT);
   analogReadResolution(analogBits);
-  // The 1v reference is the only absolut eref available
+  // The 1v reference is the only absolute ref available
   analogReference(AR_INTERNAL1V0);
   // From https://www.arduino.cc/reference/en/language/functions/analog-io/analogreference/
   // After changing the analog reference, the first few readings from analogRead() may not be accurate.
@@ -42,4 +42,3 @@ void Voltage::collect(CayenneLPP& lpp, int& payloadIndex) {
 
   lpp.addAnalogInput(payloadIndex++, sensorRead / overSampling * divider / analogMax);
 }
-

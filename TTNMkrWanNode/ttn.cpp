@@ -122,11 +122,11 @@ void TTN::saveKeys() {
   int32_t fcu, fcd;
   D_PRINTLN("Save keys");
   fcu = LoRaModem::getFCU();
-  // Sometimes first Dowlink query gets uplink!
+  // Sometimes first Downlink query gets uplink counter!
   fcd = LoRaModem::getFCD();
   fcd = LoRaModem::getFCD();
   if (fcu < 0 || fcd < 0) {
-    // Can't retrive session counters, invalidate ttnData
+    // Can't retrieve session counters, invalidate ttnData
     D_PRINTLN("Can't get session counters");
     ttnData.ver = 0;
   }
