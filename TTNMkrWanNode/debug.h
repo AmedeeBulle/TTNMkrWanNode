@@ -26,7 +26,7 @@
 // Enable debugging
 #define DEBUG
 // Use SH1106 OLed display for debug messages
-#define OLED
+// #define OLED
 
 
 /*

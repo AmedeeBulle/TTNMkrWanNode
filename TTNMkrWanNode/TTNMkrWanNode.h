@@ -38,7 +38,7 @@ const uint8_t ledPin    = PIN_LED;
  */
 
 #define SENSOR_VOLTAGE
-#define SENSOR_MAXIM
+// #define SENSOR_MAXIM
 // #define SENSOR_BME280
 
 #endif // TTNMkrWanNode
