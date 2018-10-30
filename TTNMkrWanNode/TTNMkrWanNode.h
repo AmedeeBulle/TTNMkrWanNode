@@ -22,10 +22,6 @@
 
 #include <Arduino.h>
 
-/*
- *  Global configuration
- */
-
 
 /*
  * Pin mapping

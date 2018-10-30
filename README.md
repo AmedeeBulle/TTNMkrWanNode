@@ -23,7 +23,7 @@ Bottom right: running current (node with the display)
   1. OTAA the first time (no data in FRAM)
   1. ABP using the saved session keys and frame counters afterwards
 1. Collect data from sensors
-1. Send LoRaWAN payload
+1. Send LoRaWAN payload in [Cayenne LPP format](https://mydevices.com/cayenne/docs/lora/#lora-cayenne-low-power-payload)
 1. Check for downlink message
 1. Enter sleep mode (raise the _Done_ pin of the TPL5110)
 
@@ -50,7 +50,41 @@ The [Arduino IDE](https://www.arduino.cc/en/Main/Software) with following librar
 - For the BME280 sensor
   - [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)
   - [Adafruit BME280](https://github.com/adafruit/Adafruit_BME280_Library)
-- For the Maxim DS18B20 sensors
+- For the Maxim DS18B20 sensor
   - [OneWire](https://github.com/PaulStoffregen/OneWire)
   - [DallasTemperature](https://github.com/milesburton/Arduino-Temperature-Control-Library)
 - For the optional display: [U8g2](https://github.com/olikraus/u8g2)
+
+# Sample setup
+Sample setup with an SH1106 OLED display and a DS18B20 sensor:
+
+<img src="images/TTNMkrWanNode.png" alt="Fritzing" width="600">
+
+# Operations
+## Software configuration
+- Copy `arduino_secrets_distr.h` to `arduino_secrets.h` and enter your keys obtained from TheThingsNetwork console
+- In `TTNMkrWanNode` uncomment the _defines_ for your sensors.  
+The Voltage sensor is always available, it uses the built-in divider.
+Note that givent the fact that the divider is 1/3rd and the voltage reference is 1.0v, the maximum you can measure is 3.0v...
+- In `debug.h` choose your debugging option:
+  - `#define DEBUG` commented out: no debug code generated
+  - `#define DEBUG` uncommented: debug on the (USB) serial console.
+  The node will wait for the console!
+  - `#define DEBUG` and `#define OLED` uncommented: debug messages on the OLED display.
+- In `ttn.h` you can set your LoRaWan default port and data rate
+
+## Power
+Disconnect power coming from the TPL5110 (DRV) when powering from USB.
+
+## Initialisation
+If the FRAM does not contain valid data or if the button is pressed when the MKR WAN 1300 starts, the device will perform an OTAA join.  
+
+## Downlink messages
+Before sleeping the node will check for downlink message:
+- 0x01: Reset. The node will perform an OTAA join during next cycle
+- 0x02 0xpp: Set port. The node will use port `pp` when sending data
+- 0x03 0xdd: Set data rate. The node will use the requested data rate.
+
+## Sleep time
+- When powered from USB, the node will idle for 5 minutes then reset itself
+- When powered through the TPL5110 the sleep time is driven by a resistor (on the Adafruit breakout you can use the trimpot on the board)

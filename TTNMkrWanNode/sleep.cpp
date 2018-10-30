@@ -24,7 +24,6 @@
 #include "sleep.h"
 
 
-
 void setupSleep() {
   // Setup the Done pin for the TPL5110
   pinMode(donePin, OUTPUT);

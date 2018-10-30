@@ -33,8 +33,7 @@
 
 TTN ttn;
 
-// Cayenne
-// https://github.com/TheThingsNetwork/arduino-device-lib.git
+// Cayenne LPP
 const uint8_t maxPayloadSize = 16;  // Current size: 8 / 15
 CayenneLPP lpp(maxPayloadSize);
 
