@@ -1,6 +1,7 @@
-# TTN MKRWAN Node
+TTN MKRWAN Node [![Build Status](https://travis-ci.org/AmedeeBulle/TTNMkrWanNode.svg?branch=master)](https://travis-ci.org/AmedeeBulle/TTNMkrWanNode)
+===============
 
-## Background
+# Background
 Proof of concept for an "ultra low power" LoRaWAN / [The Things Network](https://www.thethingsnetwork.org/) node using the [Arduino MKR WAN 1300](https://store.arduino.cc/mkr-wan-1300).
 
 The MKR WAN 1300 uses too much power in sleep mode to be used as ultra low power device (a bit more than 1mA).
@@ -15,7 +16,7 @@ Bottom left: [Bosch BME280](https://www.adafruit.com/product/2652) temperature h
 Top right: sleep current  
 Bottom right: running current (node with the display)
 
-## Theory of operation
+# Theory of operation
 1. TPL5110 wakes up and power on the MKR WAN 1300
 1. Read saved data from FRAM
 1. Join the network
@@ -26,7 +27,7 @@ Bottom right: running current (node with the display)
 1. Check for downlink message
 1. Enter sleep mode (raise the _Done_ pin of the TPL5110)
 
-## Hardware requirement
+# Hardware requirement
 The code relies on the following hardware:
 - [Arduino MKR WAN 1300](https://store.arduino.cc/mkr-wan-1300) -- Firmware 1.1.7 or newer
 - [TPL5110 breakout](https://www.adafruit.com/product/3435)
@@ -41,7 +42,7 @@ The code relies on the following hardware:
 
 Any similar hardware should work, but might need some code change.
 
-## Software dependencies
+# Software dependencies
 The [Arduino IDE](https://www.arduino.cc/en/Main/Software) with following libraries (all available from the Arduino Library Manager):
 - [Arduino MKRWAN](https://github.com/arduino-libraries/MKRWAN) version 1.1.7 or newer
 - [Adafruit FRAM](https://github.com/adafruit/Adafruit_FRAM_SPI) (SPI version)

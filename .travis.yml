@@ -1,0 +1,43 @@
+language: generic
+env:
+  global:
+    - IDE_VERSION=1.8.5
+  matrix:
+    - BOARD="arduino:samd:mkrwan1300"
+before_install:
+  - wget http://downloads.arduino.cc/arduino-$IDE_VERSION-linux64.tar.xz
+  - tar xf arduino-$IDE_VERSION-linux64.tar.xz
+  - mv arduino-$IDE_VERSION $HOME/arduino-ide
+  - export PATH=$PATH:$HOME/arduino-ide
+  - if [[ "$BOARD" =~ "arduino:samd:" ]]; then
+      arduino --install-boards arduino:samd;
+    fi
+  - mv $PWD/TTNMkrWanNode/arduino_secrets_distr.h $PWD/TTNMkrWanNode/arduino_secrets.h
+  - buildNode() { arduino --verify --board $BOARD $PWD/TTNMkrWanNode/TTNMkrWanNode.ino; }
+  - enableDef() { sed -i "s/.*define $2\$/#define $2/" "$PWD/TTNMkrWanNode/$1.h"; }
+  - disableDef() { sed -i "s!.*define $2\$!//#define $2!" "$PWD/TTNMkrWanNode/$1.h"; }
+install:
+  - mkdir -p $HOME/Arduino/libraries
+  - arduino --install-library "MKRWAN:1.0.7"
+  - arduino --install-library "Adafruit FRAM SPI:1.0.1"
+  - arduino --install-library "TheThingsNetwork:2.5.11"
+  - arduino --install-library "Adafruit Unified Sensor:1.0.2,Adafruit BME280 Library:1.0.7"
+  - arduino --install-library "OneWire:2.3.4,DallasTemperature:3.8.0"
+  - arduino --install-library "U8g2:2.24.3"
+script:
+  # Simple build -- No debug
+  - disableDef debug DEBUG
+  - buildNode
+  # With Serial Debug
+  - enableDef debug DEBUG
+  - buildNode
+  # With OLED Debug
+  - enableDef debug OLED
+  - buildNode
+  # With Dallas sensor
+  - enableDef TTNMkrWanNode SENSOR_MAXIM
+  - buildNode
+  # With BME280 sensor
+  - disableDef TTNMkrWanNode SENSOR_MAXIM
+  - enableDef TTNMkrWanNode SENSOR_BME280
+  - buildNode
