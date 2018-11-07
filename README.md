@@ -46,7 +46,7 @@ Any similar hardware should work, but might need some code change.
 The [Arduino IDE](https://www.arduino.cc/en/Main/Software) with following libraries (all available from the Arduino Library Manager):
 - [Arduino MKRWAN](https://github.com/arduino-libraries/MKRWAN) version 1.1.7 or newer
 - [Adafruit FRAM](https://github.com/adafruit/Adafruit_FRAM_SPI) (SPI version)
-- [TheThingsNetwork](https://github.com/TheThingsNetwork/arduino-device-lib). Do __not__ install version 2.5.12, it won't compile on the MKR WAN 1300 (See [#246](https://github.com/TheThingsNetwork/arduino-device-lib/pull/246)); 2.5.11 works fine.
+- [TheThingsNetwork](https://github.com/TheThingsNetwork/arduino-device-lib) version 2.5.13 or newer (__not__ 2.5.12!)
 - For the BME280 sensor
   - [Adafruit Unified Sensor](https://github.com/adafruit/Adafruit_Sensor)
   - [Adafruit BME280](https://github.com/adafruit/Adafruit_BME280_Library)
